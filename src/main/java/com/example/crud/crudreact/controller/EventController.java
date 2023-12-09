@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,4 +26,10 @@ public class EventController {
 	public List<Event> getAllEvents(){
 		return eventRepository.findAll();
 	}
+
+    // create new event REST API
+    @PostMapping("/events")
+    public Event addNewEvent(@RequestBody Event event){
+        return eventRepository.save(event);
+    }
 }

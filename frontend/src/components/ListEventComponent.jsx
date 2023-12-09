@@ -18,7 +18,7 @@ const ListEventComponent = () => {
     <div className="container">
       <h2 className="text-center mt-5">All Events</h2>
       <div className="row">
-        <table className="table table-striped table-hover">
+        <table className="table table-hover">
           <thead>
             <tr>
               <th>ID</th>

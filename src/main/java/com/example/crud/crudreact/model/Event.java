@@ -25,7 +25,7 @@ public class Event {
 	private String eventTitle;
 
 	@Column(name = "event_description")
-	private String EventDescription;
+	private String eventDescription;
 
 	@Column(name = "event_date")
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
