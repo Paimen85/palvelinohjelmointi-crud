@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import EventService from "../services/EventService";
+import { Link } from "react-router-dom";
 
 const ListEventComponent = () => {
   const [events, setEvents] = useState([]);
@@ -11,25 +12,24 @@ const ListEventComponent = () => {
   const loadEvents = async () =>
     await EventService.getEvents().then((res) => {
       setEvents(res.data);
-      console.log(res);
     });
 
   return (
     <div className="container">
       <h2 className="text-center mt-5">All Events</h2>
       <div className="row">
-        <table className="table table-hover">
+        <table className="table table-hover table-bordered">
           <thead>
-            <tr>
+            <tr className="text-center">
               <th>ID</th>
               <th>Event Title</th>
               <th>Event Description</th>
               <th>Event Date</th>
               <th>Category</th>
-              <th>Action</th>
+              <th colSpan="2">Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-center">
             {events.map((event, index) => (
               <tr key={event.id}>
                 <th scope="row" key={index}>
@@ -39,8 +39,10 @@ const ListEventComponent = () => {
                 <td>{event.eventDescription}</td>
                 <td>{event.eventDate}</td>
                 <td>{event.category}</td>
-                <td>Edit</td>
-                <td>Delete</td>
+                <td className="mx-2">
+                  <Link className="btn btn-warning" to={"/edit-event"}>Edit</Link>
+                </td>
+                <td className="mx-2"><button className="btn btn-danger">Delete</button></td>
               </tr>
             ))}
           </tbody>
