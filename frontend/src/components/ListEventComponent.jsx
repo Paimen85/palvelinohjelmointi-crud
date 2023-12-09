@@ -15,8 +15,8 @@ const ListEventComponent = () => {
     });
 
   return (
-    <div>
-      <h2 className="text-center">All Events</h2>
+    <div className="container">
+      <h2 className="text-center mt-5">All Events</h2>
       <div className="row">
         <table className="table table-striped table-hover">
           <thead>
