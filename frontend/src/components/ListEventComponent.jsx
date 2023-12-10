@@ -14,6 +14,11 @@ const ListEventComponent = () => {
       setEvents(res.data);
     });
 
+  const deleteEvent = async (id) =>
+    await EventService.deleteEvenyById(id).then((res) => {
+      loadEvents();
+    });
+
   return (
     <div className="container">
       <h2 className="text-center mt-5">All Events</h2>
@@ -32,17 +37,29 @@ const ListEventComponent = () => {
           <tbody className="text-center">
             {events.map((event, index) => (
               <tr key={event.id}>
-                <th scope="row" key={index}>
+                <th scope="row" key={index} className="align-middle">
                   {index + 1}
                 </th>
-                <td>{event.eventTitle}</td>
-                <td>{event.eventDescription}</td>
-                <td>{event.eventDate}</td>
-                <td>{event.category}</td>
-                <td className="mx-2">
-                  <Link className="btn btn-warning" to={`/edit-event/${event.id}`}>Edit</Link>
+                <td className="align-middle">{event.eventTitle}</td>
+                <td className="align-middle">{event.eventDescription}</td>
+                <td className="align-middle">{event.eventDate}</td>
+                <td className="align-middle">{event.category}</td>
+                <td className="mx-2 align-middle" >
+                  <Link
+                    className="btn btn-warning"
+                    to={`/edit-event/${event.id}`}
+                  >
+                    Edit
+                  </Link>
                 </td>
-                <td className="mx-2"><button className="btn btn-danger">Delete</button></td>
+                <td className="mx-2 align-middle">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => deleteEvent(event.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

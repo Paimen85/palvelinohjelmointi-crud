@@ -1,10 +1,13 @@
 package com.example.crud.crudreact.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,5 +61,18 @@ public class EventController {
 		Event updatedEvent = eventRepository.save(event);
 
 		return ResponseEntity.ok(updatedEvent);
+	}
+
+	// delete event REST API
+
+	@DeleteMapping("/events/{id}")
+	public ResponseEntity<Map<String, Boolean>> deleteEventbyId(@PathVariable Long id) {
+		Event event = eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Event with this id: "  + id + " not found"));
+
+		eventRepository.delete(event);
+
+		Map<String, Boolean> result = new HashMap<>();
+		result.put("deleted", Boolean.TRUE);
+		return ResponseEntity.ok(result);
 	}
 }

@@ -13,6 +13,10 @@ class EventService {
   getEventByID(id) {
     return axios.get(EVENT_API_BASE_URL + "/" + id);
   }
+
+  deleteEvenyById(id) {
+    return axios.delete(EVENT_API_BASE_URL + "/" + id);
+  }
 }
 
 export default new EventService();

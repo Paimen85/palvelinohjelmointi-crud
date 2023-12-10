@@ -26,7 +26,6 @@ const UpdateEvent = () => {
     setEvent({ ...event, eventTitle: e.target.value });
   };
 
-  console.log(event);
   const changeDescriptionHandler = (e) => {
     setEvent({ ...event, eventDescription: e.target.value });
   };
@@ -44,7 +43,6 @@ const UpdateEvent = () => {
     await EventService.addEvent(event)
       .then((res) => {
         navigate("/events");
-        console.log(event);
       })
       .catch(function (error) {
         console.log(error);
