@@ -6,6 +6,7 @@ import Header from "./components/Header.jsx";
 import Home from "./components/Home.jsx";
 import ListEventComponent from "./components/ListEventComponent.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import UpdateEvent from "./components/UpdateEvent.jsx";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route exact path="/" element={<Home />} />
             <Route exact path="/events" element={<ListEventComponent />} />
             <Route exact path="/add-event" element={<AddEvent />} />
+            <Route exact path="/edit-event/:id" element={<UpdateEvent />} />
           </Routes>
         </Router>
       </div>

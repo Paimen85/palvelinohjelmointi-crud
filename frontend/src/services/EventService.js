@@ -9,6 +9,10 @@ class EventService {
   addEvent(event) {
     return axios.post(EVENT_API_BASE_URL, event);
   }
+
+  getEventByID(id) {
+    return axios.get(EVENT_API_BASE_URL + "/" + id);
+  }
 }
 
 export default new EventService();

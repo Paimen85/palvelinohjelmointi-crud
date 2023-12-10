@@ -40,7 +40,7 @@ const ListEventComponent = () => {
                 <td>{event.eventDate}</td>
                 <td>{event.category}</td>
                 <td className="mx-2">
-                  <Link className="btn btn-warning" to={"/edit-event"}>Edit</Link>
+                  <Link className="btn btn-warning" to={`/edit-event/${event.id}`}>Edit</Link>
                 </td>
                 <td className="mx-2"><button className="btn btn-danger">Delete</button></td>
               </tr>
