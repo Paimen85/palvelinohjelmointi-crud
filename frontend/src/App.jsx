@@ -1,5 +1,5 @@
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "../node_modules/bootstrap/dist/js/bootstrap.min.js";
+import "bootstrap/dist/js/bootstrap.min.js";
 import "./App.css";
 import AddEvent from "./components/AddEvent.jsx";
 import Header from "./components/Header.jsx";
@@ -7,6 +7,7 @@ import Home from "./components/Home.jsx";
 import ListEventComponent from "./components/ListEventComponent.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import UpdateEvent from "./components/UpdateEvent.jsx";
+import SignUpComponent from "./components/SignUpComponent.jsx";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
             <Route exact path="/events" element={<ListEventComponent />} />
             <Route exact path="/add-event" element={<AddEvent />} />
             <Route exact path="/edit-event/:id" element={<UpdateEvent />} />
+            <Route exact path="/sign-up" element={<SignUpComponent />} />
+            
           </Routes>
         </Router>
       </div>

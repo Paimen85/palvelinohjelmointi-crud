@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header> 
+    <header>
       <nav className="navbar navbar-expand-lg bg-body-tertiary px-5">
-        
+        <div className="container-fluid">
           <Link className="navbar-brand" to={"/"}>
             Events
           </Link>
@@ -20,21 +20,32 @@ const Header = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
+          <div className="collapse navbar-collapse " id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to={"/events"}>
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to={"/events"}
+                >
                   All Events
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to={"/add-event"}>
-                  Add new 
+                  Add new
                 </Link>
               </li>
             </ul>
           </div>
-        
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <Link className="nav-link" to={"/sign-up"}>
+                Sign Up
+              </Link>
+            </li>
+          </ul>
+        </div>
       </nav>
     </header>
   );
