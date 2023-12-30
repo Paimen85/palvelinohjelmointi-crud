@@ -39,6 +39,11 @@ class AuthService {
     const username = sessionStorage.getItem("authenticatedUser");
     return username
   }
+
+  logout() {
+    localStorage.clear()
+    sessionStorage.clear()
+  }
 }
 
 export default new AuthService();

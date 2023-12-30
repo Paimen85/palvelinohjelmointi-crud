@@ -1,9 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthService from "../services/AuthService";
 
 const Header = () => {
+
+  const navigate = useNavigate()
   const isAuth = AuthService.isUserLoggedIn();
+
+  const handleLogout = () => {
+    AuthService.logout()
+    navigate("/login")
+  }
 
   return (
     <header>
@@ -59,6 +66,13 @@ const Header = () => {
               <li className="nav-item">
                 <Link className="nav-link" to={"/login"}>
                   Login
+                </Link>
+              </li>
+            )}
+            {isAuth && (
+              <li className="nav-item">
+                <Link className="nav-link" to={"/login"} onClick={handleLogout}>
+                  Logout
                 </Link>
               </li>
             )}
