@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,18 +30,21 @@ public class EventController {
 	private EventRepository eventRepository;
 
 	//get all events REST API
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@GetMapping("/events")
 	public List<Event> getAllEvents(){
 		return eventRepository.findAll();
 	}
 
     // create new event REST API
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
     @PostMapping("/events")
     public Event addNewEvent(@RequestBody Event event){
         return eventRepository.save(event);
     }
 
 	// get event by id REST API
+	@PreAuthorize("hasAnyRole('ADMIN','USER')")
 	@GetMapping("/events/{id}")
 	public ResponseEntity<Event> getEventById(@PathVariable Long id) {
 		Event event = eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Event with this id: "  + id + " not found"));
@@ -50,6 +54,7 @@ public class EventController {
 
 
 	// update event REST API
+	@PreAuthorize("hasRole('ADMIN')")
 	@PutMapping("/events/{id}")
 	public ResponseEntity<Event> updateEventbyId(@PathVariable Long id, @RequestBody Event e) {
 		Event event = eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Event with this id: "  + id + " not found"));
@@ -65,6 +70,7 @@ public class EventController {
 
 	// delete event REST API
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/events/{id}")
 	public ResponseEntity<Map<String, Boolean>> deleteEventbyId(@PathVariable Long id) {
 		Event event = eventRepository.findById(id).orElseThrow(() -> new EventNotFoundException("Event with this id: "  + id + " not found"));
