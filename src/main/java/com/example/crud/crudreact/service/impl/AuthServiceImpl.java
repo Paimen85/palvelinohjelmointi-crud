@@ -1,5 +1,6 @@
 package com.example.crud.crudreact.service.impl;
 
+import com.example.crud.crudreact.dto.LoginDto;
 import com.example.crud.crudreact.dto.SingUpDto;
 import com.example.crud.crudreact.exception.EventAPIException;
 import com.example.crud.crudreact.model.Role;
@@ -9,7 +10,10 @@ import com.example.crud.crudreact.repository.UserRepository;
 import com.example.crud.crudreact.service.AuthService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +27,7 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private AuthenticationManager authenticationManager;
 
     @Override
     public String signUp(SingUpDto singUpDto) {
@@ -49,5 +54,16 @@ public class AuthServiceImpl implements AuthService {
 
         userRepository.save(user);
         return "User signed up successfully";
+    }
+
+    @Override
+    public String login(LoginDto loginDto) {
+
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+                loginDto.getUsernameOrEmail(),
+                loginDto.getPassword()
+        ));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return "User logged in successfully";
     }
 }

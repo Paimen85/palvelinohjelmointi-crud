@@ -1,5 +1,6 @@
 package com.example.crud.crudreact.controller;
 
+import com.example.crud.crudreact.dto.LoginDto;
 import com.example.crud.crudreact.service.AuthService;
 import com.example.crud.crudreact.dto.SingUpDto;
 import lombok.AllArgsConstructor;
@@ -23,5 +24,12 @@ public class AuthController {
     public ResponseEntity<String> signUp(@RequestBody SingUpDto singUpDto) {
         String response = authService.signUp(singUpDto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
+
+    //create log in REST API
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginDto loginDto) {
+        String response = authService.login(loginDto);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
