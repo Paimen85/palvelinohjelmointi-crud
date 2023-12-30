@@ -8,6 +8,7 @@ import ListEventComponent from "./components/ListEventComponent.jsx";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import UpdateEvent from "./components/UpdateEvent.jsx";
 import SignUpComponent from "./components/SignUpComponent.jsx";
+import LoginComponent from "./components/LoginComponent.jsx";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route exact path="/add-event" element={<AddEvent />} />
             <Route exact path="/edit-event/:id" element={<UpdateEvent />} />
             <Route exact path="/sign-up" element={<SignUpComponent />} />
+            <Route exact path="/login" element={<LoginComponent />} />
             
           </Routes>
         </Router>
