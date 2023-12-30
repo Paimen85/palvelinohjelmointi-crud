@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AuthService from "../services/AuthService";
 
 const SignUpComponent = () => {
   const [name, setName] = useState("");
@@ -6,11 +7,14 @@ const SignUpComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSingUpForm = (e) => {
+  const handleSingUpForm = async (e) => {
     e.preventDefault();
     const register = { name, username, email, password };
-    console.log(register)
-
+    await AuthService.signUpApiCall(register)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((e) => console.error(e));
   };
 
   return (

@@ -22,7 +22,7 @@ import com.example.crud.crudreact.model.Event;
 import com.example.crud.crudreact.repository.EventRepository;
 
 
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/")
 public class EventController {
