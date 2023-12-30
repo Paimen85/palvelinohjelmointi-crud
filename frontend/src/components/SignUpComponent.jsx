@@ -66,7 +66,7 @@ const SignUpComponent = () => {
                   </label>
                   <div className="col-md-9">
                     <input
-                      type="email"
+                      type="text"
                       name="email"
                       id="email"
                       className="form-control"

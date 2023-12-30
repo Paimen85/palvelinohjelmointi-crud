@@ -18,7 +18,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            <Route exact path="/" element={<LoginComponent />} />
             <Route exact path="/events" element={<ListEventComponent />} />
             <Route exact path="/add-event" element={<AddEvent />} />
             <Route exact path="/edit-event/:id" element={<UpdateEvent />} />

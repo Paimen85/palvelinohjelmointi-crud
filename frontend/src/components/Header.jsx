@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import AuthService from "../services/AuthService";
 
 const Header = () => {
+  const isAuth = AuthService.isUserLoggedIn();
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg bg-body-tertiary px-5">
@@ -22,33 +25,43 @@ const Header = () => {
           </button>
           <div className="collapse navbar-collapse " id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link
-                  className="nav-link active"
-                  aria-current="page"
-                  to={"/events"}
-                >
-                  All Events
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to={"/add-event"}>
-                  Add new
-                </Link>
-              </li>
+              {isAuth && (
+                <li className="nav-item">
+                  <Link
+                    className="nav-link active"
+                    aria-current="page"
+                    to={"/events"}
+                  >
+                    All Events
+                  </Link>
+                </li>
+              )}
+
+              {isAuth && (
+                <li className="nav-item">
+                  <Link className="nav-link" to={"/add-event"}>
+                    Add new
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to={"/sign-up"}>
-                Sign Up
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to={"/login"}>
-                Login
-              </Link>
-            </li>
+            {!isAuth && (
+              <li className="nav-item">
+                <Link className="nav-link" to={"/sign-up"}>
+                  Sign Up
+                </Link>
+              </li>
+            )}
+
+            {!isAuth && (
+              <li className="nav-item">
+                <Link className="nav-link" to={"/login"}>
+                  Login
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>
